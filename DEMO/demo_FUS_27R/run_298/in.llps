@@ -1,0 +1,108 @@
+# version topaz London Blue
+variable temperature equal 298.0
+variable randomSeed equal 123456789
+
+# Initialize parameters from units and box type
+units			real
+dimension		3
+boundary		p p p
+atom_style		full
+
+# Initial pair style and bond parameters
+bond_style		harmonic
+dielectric		80.0
+
+# Create new simulation box or load existing box
+#read_restart		tmp.restart.40000000
+fix				CG_CMAP all cmap ../../table/cg.cmap
+read_data		data.name fix CG_CMAP crossterm CMAP
+fix_modify		CG_CMAP energy yes
+
+# Set pair parameters
+include			./set_param_Mpipi_bonded_rs.dat
+
+special_bonds	lj/coul 0 0 0
+
+# neighbour list settings
+ neighbor		3.5 multi
+
+# Timestep and computational parameters
+comm_style		tiled
+timestep		10
+
+# relaxation by energy minimization
+neigh_modify	every 10 delay 0
+
+velocity		all create ${temperature} ${randomSeed}
+
+fix				fxvne all nve
+
+fix				fxbal all balance 1000 1.1 rcb
+
+fix				com_motion_remove all momentum 1000 linear 1 1 1 angular rescale
+
+restart			10000000 ./tmp.restart
+
+compute			myChunk2 all chunk/atom bin/1d z lower 0.0005 units reduced
+fix				densityRegions2 all ave/chunk 1000 10 20000 myChunk2 density/mass file densities_chunked2.dat
+
+thermo			1000
+thermo_style	custom step fmax ebond eangle edihed f_CG_CMAP evdwl ecoul pe ke etotal temp press
+thermo_modify	flush yes
+
+dump			dumptraj all xtc 1000 ./md.xtc
+log				./log.lammps.cg
+
+fix				fxl11 all langevin ${temperature} ${temperature} 100000 ${randomSeed}
+
+run				20000
+# 3000ns. i.e. 3us
+run				20000000
+write_data		exam_0.dat nocoeff
+
+run				20000000
+write_data		exam_1.dat nocoeff
+
+run				20000000
+write_data		exam_2.dat nocoeff
+
+run				20000000
+write_data		exam_3.dat nocoeff
+
+run				20000000
+write_data		exam_4.dat nocoeff
+
+
+run				20000000
+write_data		exam_5.dat nocoeff
+
+run				20000000
+write_data		exam_6.dat nocoeff
+
+run				20000000
+write_data		exam_7.dat nocoeff
+
+run				20000000
+write_data		exam_8.dat nocoeff
+
+run				20000000
+write_data		exam_9.dat nocoeff
+
+
+run				20000000
+write_data		exam_10.dat nocoeff
+
+run				20000000
+write_data		exam_11.dat nocoeff
+
+run				20000000
+write_data		exam_12.dat nocoeff
+
+run				20000000
+write_data		exam_13.dat nocoeff
+
+run				20000000
+write_data		exam_14.dat nocoeff
+
+
+write_data		final-structure.dat nocoeff

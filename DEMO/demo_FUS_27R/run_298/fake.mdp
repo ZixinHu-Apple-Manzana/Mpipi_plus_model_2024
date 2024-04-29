@@ -1,0 +1,30 @@
+integrator = steep; 
+dt = 0.0005; 
+nsteps = 500000;
+emtol = 0.1; 
+emstep = 0.01; 
+
+nstxout = 200;
+nstvout = 200;
+nstfout = 200;
+nstlog = 5000;
+nstenergy = 5000;
+
+energygrps = system;
+cutoff-scheme = group; 
+nstlist = 1; 
+ns-type = grid; 
+pbc = xyz;
+rlist = 3.0; 
+rcoulomb = 3.0; 
+rvdw = 3.0; 
+coulombtype = User; 
+vdwtype = User; 
+DispCorr = no; 
+table-extension = 0; 
+tc-grps = system; 
+tau-t = 0.02; 
+ref-t = 300;
+pcoupl = no; 
+gen-vel = yes;
+gen-temp = 300; 
