@@ -1,1 +1,3 @@
-Different folders of protein constructs can be added here. 
+Different folders of protein constructs can be added here (as demo_FUS_27R).
+The folder "table" contains the tabulated dihedral and CMAP potentials. 
+The folder "tools" contains some convenient scripts for the generation of files. 
