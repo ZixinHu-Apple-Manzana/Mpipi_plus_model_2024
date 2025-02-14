@@ -1,5 +1,6 @@
 # Mpipi_plus_model_2024
-We added bonded potentials to exist 1-bead-per-residue model Mpipi to improve the backbone conformations\n
+We added bonded potentials to exist 1-bead-per-residue model Mpipi to improve the backbone conformations
+
 This work has been published as "Refined Bonded Terms in Coarse-Grained Models for Intrinsically Disordered Proteins Improve Backbone Conformations"
 
 Citation information: 
