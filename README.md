@@ -17,3 +17,5 @@ url: https://pubs.acs.org/doi/10.1021/acs.jpcb.4c02823
 
 
 It exhibits potential in predicting the transient secondary structure of intrinsically disordered proteins/regions (near-quantitative accuracy with secondary structure propensity based on chemical shifts obtained by NMR)
+
+Feel free to contact me should there be any problem (zixin003@e.ntu.edu.sg)
